@@ -1,0 +1,69 @@
+#!/bin/sh -ex
+
+DB_NAME=limesurvey
+DB_USER=limesurvey
+DB_PASS=$(mcookie)
+
+ADMIN_NAME=admin
+ADMIN_PASS=turnkey
+
+SRC=/usr/local/src
+WEBROOT=/var/www/limesurvey
+
+# unpack drupal7 and configure
+tar -zxf $SRC/limesurvey*.tar.gz -C /var/www/
+chown -R root:root $WEBROOT
+chown -R www-data:www-data $WEBROOT/tmp
+chown -R www-data:www-data $WEBROOT/upload
+
+###rm $SRC/limesurvey*
+
+# configure apache
+a2dissite default
+a2ensite limesurvey
+a2enmod rewrite
+
+# convenience execution variables
+MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
+MYSQL_ADMIN="mysqladmin --user=root --password=$MYSQL_PASS"
+
+# setup mysql
+/etc/init.d/mysql start
+
+$MYSQL_ADMIN create $DB_NAME
+$MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
+
+# setup and install limesurvey
+cat >$WEBROOT/config.php<<EOF
+<?php
+
+\$databasetype = 'mysql';
+\$databasename = '$DB_NAME';
+\$databaseuser = '$DB_USER';
+\$databasepass = '$DB_PASS';
+\$databaselocation = 'localhost';
+\$dbprefix = '';
+\$rooturl = "http://{\$_SERVER['HTTP_HOST']}";
+\$rootdir = dirname(__FILE__);
+\$emailmethod = 'smtp';
+\$emailsmtphost = 'localhost';
+\$modrewrite = 1;
+\$force_ssl = '';                           // on (force ssl), off (block ssl)
+\$debug = 0;                                // 1 (debugging), 3 (developers)
+
+// Initial settings, customized on firstboot and via web interface
+\$sitename = 'TurnKey LimeSurvey';
+\$siteadminname = 'LimeSurvey Admin';
+\$siteadminemail = 'admin@example.com';
+\$siteadminbounce = 'admin@example.com';
+\$defaultuser = '$ADMIN_NAME';
+\$defaultpass = '$ADMIN_PASS';
+EOF
+
+php5 $WEBROOT/admin/install/cmd_install.php install
+
+rm -rf $WEBROOT/admin/install
+mv $WEBROOT/htaccess.txt $WEBROOT/.htaccess
+
+/etc/init.d/mysql stop
+
