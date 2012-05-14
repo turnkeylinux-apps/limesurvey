@@ -10,13 +10,12 @@ ADMIN_PASS=turnkey
 SRC=/usr/local/src
 WEBROOT=/var/www/limesurvey
 
-# unpack drupal7 and configure
+# unpack and configure
 tar -zxf $SRC/limesurvey*.tar.gz -C /var/www/
 chown -R root:root $WEBROOT
 chown -R www-data:www-data $WEBROOT/tmp
 chown -R www-data:www-data $WEBROOT/upload
-
-###rm $SRC/limesurvey*
+rm $SRC/limesurvey*
 
 # configure apache
 a2dissite default
