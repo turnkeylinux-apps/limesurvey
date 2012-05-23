@@ -9,8 +9,6 @@ Option:
 
 import sys
 import getopt
-import random
-import string
 import hashlib
 
 from dialog_wrapper import Dialog
