@@ -6,7 +6,7 @@ turnkey-limesurvey-12.1 (1) turnkey; urgency=low
 
   * Hardcoded component versions:
 
-    limesurvey      200plus-build130305
+    limesurvey      200plus-build130406
 
   * Note: Please refer to turnkey-core's changelog for changes common to all
     appliances. Here we only describe changes specific to this appliance.
