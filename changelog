@@ -4,7 +4,7 @@ turnkey-limesurvey-12.1 (1) turnkey; urgency=low
 
   * Added phpsh (interative shell for PHP) and php5-cli (generically useful).
 
-  * Hardcoded component versions:
+  * Upstream source component versions:
 
     limesurvey      200plus-build130406 (i386)
                     200plus-build130428 (amd64)
