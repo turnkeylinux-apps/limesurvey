@@ -22,8 +22,6 @@ chown -R www-data:www-data $WEBROOT/application/config
 
 # configure apache
 a2dissite default
-service apache2 start
-service apache2 stop
 a2ensite limesurvey
 a2enmod rewrite
 
@@ -33,7 +31,6 @@ sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php5/apache2/php.ini
 # start services
 /etc/init.d/apache2 start
 /etc/init.d/mysql start
-
 
 # convenience execution variables
 MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
