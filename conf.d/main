@@ -53,7 +53,7 @@ $CURL "$URL?r=installer/welcome"  --data "YII_CSRF_TOKEN=$YII_CSRF&installerLang
 $CURL "${URL}?r=installer/license" --data "YII_CSRF_TOKEN=$YII_CSRF"
 $CURL "${URL}?r=installer/precheck"
 $CURL "${URL}?r=installer/database"
-$CURL "${URL}?r=installer/database" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5Bdbtype%5D=mysql&InstallerConfigForm%5Bdblocation%5D=localhost&InstallerConfigForm%5Bdbuser%5D=$DB_USER&InstallerConfigForm%5Bdbpwd%5D=$DB_PASS&InstallerConfigForm%5Bdbname%5D=$DB_NAME&InstallerConfigForm%5Bdbprefix%5D=lime_&yt0=Next"
+$CURL "${URL}?r=installer/database" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5Bdbtype%5D=mysql&InstallerConfigForm%5Bdblocation%5D=localhost&InstallerConfigForm%5Bdbuser%5D=$DB_USER&InstallerConfigForm%5Bdbpwd%5D=$DB_PASS&InstallerConfigForm%5Bdbname%5D=$DB_NAME&InstallerConfigForm%5Bdbprefix%5D=&yt0=Next"
 
 $CURL "${URL}?r=installer/populatedb" --data "YII_CSRF_TOKEN=$YII_CSRF&createdbstep2=Populate+database"
 $CURL "${URL}?r=installer/optional"
