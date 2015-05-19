@@ -21,7 +21,7 @@ chown -R www-data:www-data $WEBROOT/upload
 chown -R www-data:www-data $WEBROOT/application/config
 
 # configure apache
-a2dissite default
+a2dissite 000-default
 a2ensite limesurvey
 a2enmod rewrite
 
