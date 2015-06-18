@@ -5,7 +5,10 @@ dl() {
     cd $2; curl -L -f -o limesurvey-205.tar.gz $PROXY $1; cd -
 }
 
-VERSION="205plus-build150508-tar-gz"
-URL="https://www.limesurvey.org/en/stable-release/finish/25-latest-stable-release/1248-limesurvey$VERSION"
+#VERSION="205plus-build150508-tar-gz"
+#URL="https://www.limesurvey.org/en/stable-release/finish/25-latest-stable-release/1248-limesurvey$VERSION"
+
+VERSION="limesurvey206plus-build150612.tar.gz"
+URL="http://download.limesurvey.org/latest-stable-release/$VERSION"
 
 dl $URL /usr/local/src
