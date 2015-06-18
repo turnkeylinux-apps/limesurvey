@@ -12,9 +12,10 @@ and on top of that:
 - LimeSurvey configurations:
    
    - Installed from upstream source code to /var/www/limesurvey
+   - Admin area available from example.com/admin
 
 - SSL support out of the box.
-- `PHPMyAdmin`_ administration frontend for MySQL (listening on port
+- `Adminer`_ administration frontend for MySQL (listening on port
   12322 - uses SSL).
 - Postfix MTA (bound to localhost) to allow sending of email (e.g.,
   password recovery).
@@ -29,4 +30,4 @@ Credentials *(passwords set at first boot)*
 
 .. _LimeSurvey: http://www.limesurvey.org/
 .. _TurnKey Core: http://www.turnkeylinux.org/core
-.. _PHPMyAdmin: http://www.phpmyadmin.net
+.. _Adminer: http://www.adminer.org/
