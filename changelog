@@ -6,12 +6,12 @@ turnkey-limesurvey-14.0 (1) turnkey; urgency=low
 
   * Upstream source component versions:
 
-    limesurvey      206plus-build150612
+    limesurvey      206plus-build150729
 
   * Note: Please refer to turnkey-core's changelog for changes common to all
     appliances. Here we only describe changes specific to this appliance.
 
- -- Jeremy Davis <jeremy@turnkeylinux.org>  Thu, 18 Jun 2015 13:25:23 +1000
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Thu, 30 Jul 2015 01:08:23 +1000
 
 turnkey-limesurvey-13.0 (1) turnkey; urgency=low
 
