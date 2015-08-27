@@ -9,6 +9,7 @@ Option:
 
 import sys
 import getopt
+import inithooks_cache
 import hashlib
 
 from dialog_wrapper import Dialog
@@ -52,6 +53,8 @@ def main():
             "LimeSurvey Email",
             "Enter email address for the LimeSurvey 'admin' account.",
             "admin@example.com")
+
+    inithooks_cache.write('APP_EMAIL', email)
 
     hashpass = hashlib.sha256(password).hexdigest()
 
