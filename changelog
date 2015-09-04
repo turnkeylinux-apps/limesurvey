@@ -2,11 +2,11 @@ turnkey-limesurvey-14.0 (1) turnkey; urgency=low
 
   * LimeSurvey:
 
-    - Upgraded to latest limesurvey release version [#69].
+    - Upgraded to latest limesurvey release version.
 
   * Upstream source component versions:
 
-    limesurvey      206plus-build150825
+    limesurvey      206plus-build150831
 
   * Replaced PHPMyAdmin with Adminer
 
