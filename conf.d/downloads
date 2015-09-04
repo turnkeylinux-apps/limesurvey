@@ -2,10 +2,10 @@
 
 dl() {
     [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-    cd $2; curl -L -f -o limesurvey-205.tar.gz $PROXY $1; cd -
+    cd $2; curl -L -f -o limesurvey.tar.gz $PROXY $1; cd -
 }
 
-VERSION="206plus-build150825"
+VERSION="206plus-build150831"
 URL="http://download.limesurvey.org/latest-stable-release/limesurvey${VERSION}.tar.gz"
 
 dl $URL /usr/local/src
