@@ -26,11 +26,11 @@ a2ensite limesurvey
 a2enmod rewrite
 
 # Increase PHP memory for Limesurvey minimal requirements i.e. 64 MB
-sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php5/apache2/php.ini 
+sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/7.0/apache2/php.ini 
 
 # start services
-/etc/init.d/apache2 start
-/etc/init.d/mysql start
+service apache2 start
+service mysql start
 
 # convenience execution variables
 MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
@@ -60,5 +60,5 @@ $CURL "${URL}?r=installer/optional"
 $CURL "${URL}/installer/optional" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5BadminLoginName%5D=$ADMIN_NAME&InstallerConfigForm%5BadminLoginPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BconfirmPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BadminName%5D=Administrator&InstallerConfigForm%5BadminEmail%5D=$EMAIL&InstallerConfigForm%5BsiteName%5D=TurnKey+LimeSurvey&InstallerConfigForm%5Bsurveylang%5D=en&yt0=Next"
 
 # stop services
-/etc/init.d/apache2 stop
-/etc/init.d/mysql stop
+service apache2 stop
+service mysql stop
