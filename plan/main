@@ -7,3 +7,4 @@ php-ldap
 php-imap
 php-mbstring
 php-xml
+php-zip

@@ -57,7 +57,8 @@ $CURL "${URL}?r=installer/database" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerCo
 
 $CURL "${URL}?r=installer/populatedb" --data "YII_CSRF_TOKEN=$YII_CSRF&createdbstep2=Populate+database"
 $CURL "${URL}?r=installer/optional"
-$CURL "${URL}/installer/optional" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5BadminLoginName%5D=$ADMIN_NAME&InstallerConfigForm%5BadminLoginPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BconfirmPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BadminName%5D=Administrator&InstallerConfigForm%5BadminEmail%5D=$EMAIL&InstallerConfigForm%5BsiteName%5D=TurnKey+LimeSurvey&InstallerConfigForm%5Bsurveylang%5D=en&yt0=Next"
+$CURL "${URL}?r=/installer/optional" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5BadminLoginName%5D=$ADMIN_NAME&InstallerConfigForm%5BadminLoginPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BconfirmPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BadminName%5D=Administrator&InstallerConfigForm%5BadminEmail%5D=$EMAIL&InstallerConfigForm%5BsiteName%5D=TurnKey+LimeSurvey&InstallerConfigForm%5Bsurveylang%5D=en"
+$CURL "${URL}?r=/admin"
 
 # stop services
 service apache2 stop
