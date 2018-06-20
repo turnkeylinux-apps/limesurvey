@@ -1,7 +1,7 @@
 turnkey-limesurvey-15.0 (1) turnkey; urgency=low
 
   * Updated LimeSurvey to latest upstream stable version:
-    - limesurvey3.1.0+180124
+    - limesurvey3.12.1+180616
 
   * Install Adminer directly from stretch/main repo
 
