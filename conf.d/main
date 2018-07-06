@@ -14,7 +14,7 @@ WEBROOT=/var/www/limesurvey
 # unpack and set required permissions
 tar -zxf $SRC/limesurvey*.tar.gz -C $(dirname $WEBROOT)
 rm $SRC/limesurvey*
-
+mv /var/www/LimeSurvey* $WEBROOT
 chown -R root:root $WEBROOT
 chown -R www-data:www-data $WEBROOT/tmp
 chown -R www-data:www-data $WEBROOT/upload
