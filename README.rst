@@ -14,6 +14,10 @@ and on top of that:
    - Installed from upstream source code to /var/www/limesurvey
    - Admin area available from example.com/admin
 
+     **Security note**: Updates to LimeSurvey may require supervision so
+     they **ARE NOT** configured to install automatically. See `LimeSurvey
+     documentation`_ for upgrading.
+
 - SSL support out of the box.
 - `Adminer`_ administration frontend for MySQL (listening on port
   12322 - uses SSL).
@@ -29,6 +33,7 @@ Credentials *(passwords set at first boot)*
 -  LimeSurvey: username **admin**
 
 
-.. _LimeSurvey: http://www.limesurvey.org/
+.. _LimeSurvey: https://www.limesurvey.org/
 .. _TurnKey Core: https://www.turnkeylinux.org/core
-.. _Adminer: http://www.adminer.org/
+.. _LimeSurvey documentation: https://manual.limesurvey.org/Upgrading_from_a_previous_version
+.. _Adminer: https://www.adminer.org/
