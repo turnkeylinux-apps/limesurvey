@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 """Set LimeSurvey admin password and email
 
 Option:
@@ -17,16 +17,16 @@ from mysqlconf import MySQL
 
 def usage(s=None):
     if s:
-        print >> sys.stderr, "Error:", s
-    print >> sys.stderr, "Syntax: %s [options]" % sys.argv[0]
-    print >> sys.stderr, __doc__
+        print("Error:", s, file=sys.stderr)
+    print("Syntax: %s [options]" % sys.argv[0], file=sys.stderr)
+    print(__doc__, file=sys.stderr)
     sys.exit(1)
 
 def main():
     try:
         opts, args = getopt.gnu_getopt(sys.argv[1:], "h",
                                        ['help', 'pass=', 'email='])
-    except getopt.GetoptError, e:
+    except getopt.GetoptError as e:
         usage(e)
 
     password = ""
@@ -56,18 +56,18 @@ def main():
 
     inithooks_cache.write('APP_EMAIL', email)
 
-    hashpass = hashlib.sha256(password).hexdigest()
+    hashpass = hashlib.sha256(password.encode('utf8')).hexdigest()
 
     m = MySQL()
-    m.execute('UPDATE limesurvey.users SET email=\"%s\" WHERE users_name=\"admin\";' % email)
-    m.execute('UPDATE limesurvey.users SET password=\"%s\" WHERE users_name=\"admin\";' % hashpass)
+    m.execute('UPDATE limesurvey.users SET email=%s WHERE users_name=\"admin\";', (email,))
+    m.execute('UPDATE limesurvey.users SET password=%s WHERE users_name=\"admin\";', (hashpass,))
 
     # these settings don't exist until first login and browsing
     # just delete and recreate (supports re-initialization)
     m.execute('DELETE FROM limesurvey.settings_global WHERE stg_name=\"siteadminemail\";')
     m.execute('DELETE FROM limesurvey.settings_global WHERE stg_name=\"siteadminbounce\";')
-    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminemail\", stg_value=\"%s\";' % email)
-    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminbounce\", stg_value=\"%s\";' % email)
+    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminemail\", stg_value=%s;', (email,))
+    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminbounce\", stg_value=%s;', (email,))
 
 if __name__ == "__main__":
     main()

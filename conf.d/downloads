@@ -6,7 +6,7 @@ dl() {
 }
 
 
-latest_tag=$(git ls-remote --tags https://github.com/LimeSurvey/LimeSurvey | sort -t '/' -k 3 -V | awk '{print $2}' | grep -v '{}' | awk -F"/" '{print $3}' | tail -n 1)
+latest_tag=$(git ls-remote --tags https://github.com/LimeSurvey/LimeSurvey | sort -t '/' -k 3 -V | awk '{print $2}' | grep -v '{}' | awk -F"/" '{print $3}' | grep -v remove | grep -v list | grep -v Release | tail -n 1)
 URL="https://github.com/LimeSurvey/LimeSurvey/archive/$latest_tag.tar.gz"
 
 dl $URL /usr/local/src
