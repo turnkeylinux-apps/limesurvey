@@ -22,11 +22,12 @@ chown -R www-data:www-data $WEBROOT/application/config
 
 # configure apache
 a2dissite 000-default
+a2enmod headers
 a2ensite limesurvey
 a2enmod rewrite
 
 # Increase PHP memory for Limesurvey minimal requirements i.e. 64 MB
-sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/7.3/apache2/php.ini 
+sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/7.4/apache2/php.ini 
 
 # start services
 service apache2 start
@@ -59,6 +60,8 @@ $CURL "${URL}?r=installer/populatedb" --data "YII_CSRF_TOKEN=$YII_CSRF&createdbs
 $CURL "${URL}?r=installer/optional"
 $CURL "${URL}?r=/installer/optional" --data "YII_CSRF_TOKEN=$YII_CSRF&InstallerConfigForm%5BadminLoginName%5D=$ADMIN_NAME&InstallerConfigForm%5BadminLoginPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BconfirmPwd%5D=$ADMIN_PASS&InstallerConfigForm%5BadminName%5D=Administrator&InstallerConfigForm%5BadminEmail%5D=$EMAIL&InstallerConfigForm%5BsiteName%5D=TurnKey+LimeSurvey&InstallerConfigForm%5Bsurveylang%5D=en"
 $CURL "${URL}?r=/admin"
+
+sed -i "s|\['force_ssl'\] = 'off'|['force_ssl'] = 'on'|" $WEBROOT/application/config/config-defaults.php
 
 # stop services
 service apache2 stop
