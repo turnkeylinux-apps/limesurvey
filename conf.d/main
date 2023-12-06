@@ -27,7 +27,7 @@ a2ensite limesurvey
 a2enmod rewrite
 
 # Increase PHP memory for Limesurvey minimal requirements i.e. 64 MB
-sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/7.4/apache2/php.ini 
+sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/?.?/apache2/php.ini 
 
 # start services
 service apache2 start
