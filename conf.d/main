@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/bash -ex
 
 DB_NAME=limesurvey
 DB_USER=limesurvey
@@ -25,9 +25,6 @@ a2dissite 000-default
 a2enmod headers
 a2ensite limesurvey
 a2enmod rewrite
-
-# Increase PHP memory for Limesurvey minimal requirements i.e. 64 MB
-sed -i s/memory_limit\ =\ 32M/memory_limit\ =\ 64M/  /etc/php/?.?/apache2/php.ini 
 
 # start services
 service apache2 start
