@@ -1,6 +1,6 @@
 turnkey-limesurvey-18.0 (1) turnkey; urgency=low
 
-  * Update LimeSurvey to latest upstream version: v6.4.1.
+  * Update LimeSurvey to latest upstream version: v6.4.2.
     [Stefan Davis <stefan@turnkeylinux.org>]
 
   * Ensure hashfile includes URL to public key - closes #1864.
@@ -75,13 +75,17 @@ turnkey-limesurvey-18.0 (1) turnkey; urgency=low
 
   * Debian default PHP updated to v8.2.
 
+  * Include new 'tkl-update-php' script - to make updating/changing PHP
+    version easier for end users.
+    [Marcos Méndez @ POPSOLUTIONS <https://github.com/marcos-mendez>]
+
   * DEV: Add support for setting max_execution_time & max_input_vars in
     php.ini via appliance Makefile (PHP_MAX_EXECUTION_TIME &
     PHP_MAX_INPUT_VARS).
 
   * Use MariaDB (MySQL replacement) v10.11.3 (from debian repos).
 
- -- Jeremy Davis <jeremy@turnkeylinux.org>  Wed, 10 Jan 2024 04:30:28 +0000
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Thu, 25 Jan 2024 07:56:09 +0000
 
 turnkey-limesurvey-17.1 (1) turnkey; urgency=low
 
