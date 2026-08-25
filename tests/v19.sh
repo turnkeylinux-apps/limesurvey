@@ -103,9 +103,9 @@ ss -ltn | grep -Eq '127\.0\.0\.1:25[[:space:]]'
 
 latest_page=$(curl --fail --silent --show-error \
     https://community.limesurvey.org/downloads/)
-grep -Fq 'Community Edition version 7.0.11' <<<"$latest_page"
+grep -Fq 'Community Edition version <strong>7.0.11</strong>' <<<"$latest_page"
 apt-get update >/dev/null
-for package in php8.4 mariadb-server; do
+for package in php8.4-intl mariadb-server; do
     apt-cache policy "$package" >"$policy"
     installed=$(awk '/Installed:/ {print $2}' "$policy")
     candidate=$(awk '/Candidate:/ {print $2}' "$policy")
