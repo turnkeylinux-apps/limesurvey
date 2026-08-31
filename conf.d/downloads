@@ -1,12 +1,18 @@
-#!/bin/bash -ex
+#!/bin/bash
+set -Eeuxo pipefail
 
-dl() {
-    [ "$FAB_HTTP_PROXY" ] && PROXY="--proxy $FAB_HTTP_PROXY"
-    cd $2; curl -L -f -o limesurvey.tar.gz $PROXY $1; cd -
-}
+VERSION=7.0.11
+BUILD=260821
+ARCHIVE="limesurvey${VERSION}+${BUILD}.zip"
+URL="https://download.limesurvey.org/latest-master/$ARCHIVE"
+SHA256=cef826be3e32ae5dd443b1d8f222fc9f3214688115705271c114d4492d7ca9ab
 
+proxy=()
+if [[ -n ${FAB_HTTP_PROXY:-} ]]; then
+    proxy=(--proxy "$FAB_HTTP_PROXY")
+fi
 
-latest_tag=$(git ls-remote --tags https://github.com/LimeSurvey/LimeSurvey | sort -t '/' -k 3 -V | awk '{print $2}' | grep -v '{}' | awk -F"/" '{print $3}' | grep -v remove | grep -v list | grep -v Release | tail -n 1)
-URL="https://github.com/LimeSurvey/LimeSurvey/archive/$latest_tag.tar.gz"
-
-dl $URL /usr/local/src
+curl --fail --location "${proxy[@]}" "$URL" \
+    --output "/usr/local/src/$ARCHIVE"
+printf '%s  %s\n' "$SHA256" "/usr/local/src/$ARCHIVE" |
+    sha256sum --check -

@@ -1,3 +1,17 @@
+turnkey-limesurvey-19.0 (1) turnkey; urgency=low
+
+  * Install the supported LimeSurvey 7.0.11 Community Edition complete
+    release and verify the reviewed archive digest.
+
+  * Use the supported CLI installer and password reset command with PHP 8.4
+    and MariaDB 11.8 on Debian 13 Trixie.
+
+  * Add focused acceptance for administrator authentication, survey import
+    and editor API visibility, MariaDB persistence and the supervised upstream
+    update channel.
+
+ -- TurnKey GNU/Linux <admin@turnkeylinux.org>  Tue, 25 Aug 2026 08:00:00 +0000
+
 turnkey-limesurvey-18.0 (1) turnkey; urgency=low
 
   * Update LimeSurvey to latest upstream version: v6.4.2.
@@ -290,4 +304,3 @@ turnkey-limesurvey-12.0 (1) turnkey; urgency=low
     appliances. Here we only describe changes specific to this appliance.
 
  -- Alon Swartz <alon@turnkeylinux.org>  Wed, 01 Aug 2012 08:00:00 +0200
-

@@ -10,7 +10,7 @@ Option:
 import sys
 import getopt
 from libinithooks import inithooks_cache
-import hashlib
+import subprocess
 
 from libinithooks.dialog_wrapper import Dialog
 from mysqlconf import MySQL
@@ -56,19 +56,21 @@ def main():
 
     inithooks_cache.write('APP_EMAIL', email)
 
-    hashpass = hashlib.sha256(password.encode('utf8')).hexdigest()
+    subprocess.run([
+        'runuser', '-u', 'www-data', '--', 'php',
+        '/var/www/limesurvey/application/commands/console.php',
+        'resetpassword', 'admin', password,
+    ], check=True, cwd='/var/www/limesurvey')
 
     m = MySQL()
-    m.execute('UPDATE limesurvey.users SET email=%s WHERE users_name=\"admin\";', (email,))
-    m.execute('UPDATE limesurvey.users SET password=%s WHERE users_name=\"admin\";', (hashpass,))
+    m.execute('UPDATE limesurvey.lime_users SET email=%s WHERE users_name=\"admin\";', (email,))
 
     # these settings don't exist until first login and browsing
     # just delete and recreate (supports re-initialization)
-    m.execute('DELETE FROM limesurvey.settings_global WHERE stg_name=\"siteadminemail\";')
-    m.execute('DELETE FROM limesurvey.settings_global WHERE stg_name=\"siteadminbounce\";')
-    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminemail\", stg_value=%s;', (email,))
-    m.execute('INSERT INTO limesurvey.settings_global SET stg_name=\"siteadminbounce\", stg_value=%s;', (email,))
+    m.execute('DELETE FROM limesurvey.lime_settings_global WHERE stg_name=\"siteadminemail\";')
+    m.execute('DELETE FROM limesurvey.lime_settings_global WHERE stg_name=\"siteadminbounce\";')
+    m.execute('INSERT INTO limesurvey.lime_settings_global SET stg_name=\"siteadminemail\", stg_value=%s;', (email,))
+    m.execute('INSERT INTO limesurvey.lime_settings_global SET stg_name=\"siteadminbounce\", stg_value=%s;', (email,))
 
 if __name__ == "__main__":
     main()
-
